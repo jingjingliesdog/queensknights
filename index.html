@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>女王不用等，大哥大姐团建群</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+            background-color: #f9f9f9;
+        }
+        input {
+            padding: 10px;
+            margin: 10px;
+            width: 250px;
+        }
+        button {
+            padding: 10px 20px;
+            cursor: pointer;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+        }
+        .result {
+            margin-top: 20px;
+            font-size: 20px;
+            color: green;
+        }
+        .intro {
+            margin-top: 40px;
+            font-size: 16px;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>女王不用等，大哥大姐团建群</h1>
+
+    <p class="intro">我们不内卷，我们公平竞争；我们不修罗场，我们互帮互助。</p>
+
+    <input type="text" id="username" placeholder="输入您的抖音ID">
+    <br>
+    <input type="password" id="password" placeholder="输入查询密码">
+    <br>
+    <button onclick="checkScore()">查询分数</button>
+
+    <div class="result" id="result"></div>
+
+    <script>
+        // 数据：抖音ID、密码和分数（单位：万）
+        const data = {
+            "柯基是狗": { score: 224.8 },
+            "ATEN": { score: 115.9 },
+            "康熙Samuel": { score: 15.2 },
+            "Frances_Xu": { score: 12.6 },
+            "变": { score: 9.2 }
+        };
+
+        function checkScore() {
+            // 获取用户输入的抖音ID和密码
+            const username = document.getElementById("username").value.trim();
+            const password = document.getElementById("password").value.trim();
+
+            // 验证密码是否正确
+            if (password !== "1996") {
+                document.getElementById("result").textContent = "查询密码错误，请重试！";
+                return;
+            }
+
+            // 查找用户分数
+            if (data[username]) {
+                const userData = data[username];
+                const score = userData.score;
+
+                let message = `${username} 的当前分数为：${score} 万分。`;
+
+                // 如果分数达到或超过 15 万
+                if (score >= 15) {
+                    message += " 恭喜您，已获得入群资格，请添加微信：ANGELIKA_ 欢迎加入女王一家亲！";
+                } else {
+                    // 如果分数小于 15 万
+                    message += " 您距离成为女王的高级守护只有一步之遥啦，洗把脸，继续加油吧！";
+                }
+
+                document.getElementById("result").textContent = message;
+            } else {
+                document.getElementById("result").textContent = "未找到您的分数信息，请检查您的抖音ID是否正确。";
+            }
+        }
+    </script>
+
+</body>
+</html>
